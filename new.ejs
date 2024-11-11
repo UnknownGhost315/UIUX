@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="/style3.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <div class="ms-auto">
+                <a href="/signout" class="btn btn-outline-danger">Sign Out</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container d-flex justify-content-center align-items-center form-container mt-3">
+        <form method="post" action="/postnew" class="needs-validation" novalidate enctype="multipart/form-data">
+            <div class="mb-4 col-sm-6">
+                <label for="name" class="form-label">enter Name</label>
+                <input name="hi2[name]" placeholder="enter Name" type="text" class="form-control" required>
+                <div class="invalid-feedback">please enter a valid one</div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">description</label>
+                <textarea name="hi2[description]" rows="5" cols="5" type="text" class="form-control"
+                    required></textarea>
+                <div class="invalid-feedback">please enter a valid description</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">upload listingimage</label>
+                <input name="hi2[image]" type="file" class="form-control">
+            </div>
+            <div class="row">
+                
+                <div class="mb-2 col-md-8">
+                    <label for="location" class="form-label"></label>
+                    <input name="hi2[location]" placeholder="enter location" type="text" class="form-control" required>
+                    <div class="invalid-feedback">enter valid one</div>
+                </div>
+                <div class="mb-2 col-md-8">
+                    <label for="location" class="form-label"></label>
+                    <input name="hi2[state]" placeholder="enter State" type="text" class="form-control" required>
+                    <div class="invalid-feedback">enter valid one</div>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label for="country" class="form-label"></label>
+                <input name="hi2[country]" placeholder="enter the country" type="text" class="form-control" />
+                <div class="invalid-feedback"> enter valid one</div>
+            </div>
+            <button class="btn btn-outline-success ">Add</button>
+    </div>
+
+
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="script2.js"></script>
+
+</body>
+
+</html>

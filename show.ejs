@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Left-Aligned Bootstrap Card</title>
+    <!-- Include Bootstrap CSS (You can use CDN for simplicity) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Full viewport height container, with flexbox and grid system -->
+    <div class="container d-flex justify-content-start min-vh-50 col-md-4">
+        <!-- Card with no border, aligned to the left but within the middle of the page -->
+        <div class="card border-0" style="width: 18rem;">
+            <img src="/<%= k.image.url %>" class="card-img-top" alt="Card image"
+                style="max-height: 160px; object-fit: cover;">
+
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%=k.name%>
+                </h5>
+                <p class="card-text">
+                    <%=k.description%>
+                </p>
+                <h7 class="card-text font-weight-bold">Location: <%=k.location%>
+                </h7><br>
+                <h7 class="card-text font-weight-bold">Country: <%=k.country%>
+                </h7>
+
+                <div>
+                    <%if((curruser._id.equals(k.owner._id)) ||(curruser.username==="sai")){%>
+                        <form action="/delete/<%=k._id%>/?_method=delete" method="post">
+                            <button class="btn btn-outline-dark mt-3">Delete</button>
+                        </form>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8 offset-2 mt-1">
+        <% if(!curruser._id.equals(k.owner._id)) { %>
+            <h4>Users feedback</h4>
+            <form method="post" action="/reviews/<%=k._id%>" novalidate class="needs-validation">
+                <div class="mb-2">
+                    <label for="customRange2" class="form-label">Example range</label>
+                    <input type="range" class="form-range" min="0" max="5" step="1" id="customRange2"
+                        name="review[rating]">
+                    <div>
+                        <label class="form-label">Comments:</label>
+                        <textarea cols="30" rows="5" id="comment" class="form-control" name="review[comment]"
+                            required></textarea>
+                        <div class="invalid-feedback">Please add comments for reviews</div>
+                    </div>
+                    <button class="btn btn-outline-dark mt-2 mb-2">Submit</button>
+            </form>
+            <% } %>
+                <% if (!curruser._id.equals(k.owner._id)){%>
+                    <div>
+                        <form method="post" action="/message/<%=k._id%>" novalidate class="needs-validation">
+                            <div>
+                                <label class="form-label">encrtypt your description to book your guide:</label>
+                                <textarea cols="15" rows="3" id="comment" class="form-control"
+                                    name="message[information]" required></textarea>
+                                <div class="invalid-feedback">Please add valid for messages</div>
+                            </div>
+                            <button class="btn btn-outline-dark mt-2 mb-2">Submit</button>
+                        </form>
+                    </div>
+                    <%}%>
+
+                        <%if(curruser._id.equals(k.owner._id)){%>
+                            <a href="/summations/<%=k._id%>" class="btn btn-outline-secondary">see requests</a>
+                            <%}%>
+
+                                </br>
+                                </br>
+                                </br>
+
+
+                                <ul>
+                                    <div class="row mt-5">
+                                        <h4>All FeedBacks</h4>
+                                        <% for(let i of k.reviews) { %>
+                                            <div class="card col-5 ms-2 mb-3">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <%= i.author.username %>
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        <%= i.comment %>
+                                                    </p>
+                                                    <p>rating:<b>
+                                                            <%= i.rating %>
+                                                        </b></p>
+                                                </div>
+                                                <% if((curruser._id).equals(i.author._id)) { %>
+                                                    <form class="mb-3" method="post"
+                                                        action="/delete/<%= k.id %>/reviews/<%= i.id %>?_method=delete">
+                                                        <button class="btn btn-sm btn-dark">Delete</button>
+                                                    </form>
+                                                    <% } %>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                </ul>
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies (Optional for interactions like buttons, modals, etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/script2.js"></script>
+
+</body>
+
+</html>
